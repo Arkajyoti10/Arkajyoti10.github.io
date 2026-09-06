@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arkajyoti Basu Ray — Data Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12141A;
+    --ink-2:#1B1E27;
+    --paper:#F3F1EC;
+    --amber:#D98E3C;
+    --amber-dim:#7A5A2E;
+    --line:rgba(243,241,236,0.12);
+    --muted:#9A9CA6;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Sora', sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(18,20,26,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:76px;
+  }
+  .logo{font-weight:700; font-size:1.05rem; letter-spacing:0.01em;}
+  .logo span{color:var(--amber);}
+  .navlinks{display:flex; gap:36px; list-style:none;}
+  .navlinks a{
+    color:var(--muted); text-decoration:none; font-size:0.95rem;
+    transition:color .2s;
+  }
+  .navlinks a:hover{color:var(--paper);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:96px 0 72px;
+    border-bottom:1px solid var(--line);
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:64px;
+    align-items:center;
+  }
+  .eyebrow{
+    color:var(--amber); font-size:0.95rem; margin-bottom:20px;
+  }
+  h1.name{
+    font-size:clamp(2.6rem, 5vw, 4.2rem);
+    font-weight:800;
+    line-height:1.02;
+    letter-spacing:-0.02em;
+  }
+  .role-line{
+    margin-top:22px;
+    font-size:1.15rem;
+    color:var(--muted);
+    max-width:46ch;
+  }
+  .role-line strong{color:var(--paper); font-weight:600;}
+  .hero-cta{
+    margin-top:34px;
+    display:flex; gap:16px; flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 24px;
+    border-radius:2px;
+    font-weight:600;
+    font-size:0.95rem;
+    text-decoration:none;
+    transition:transform .15s ease, background .2s;
+  }
+  .btn-solid{background:var(--amber); color:#1a1204;}
+  .btn-solid:hover{background:#e69f4e;}
+  .btn-outline{border:1px solid var(--line); color:var(--paper);}
+  .btn-outline:hover{border-color:var(--paper);}
+
+  .hero-panel{
+    background:var(--ink-2);
+    border:1px solid var(--line);
+    border-radius:4px;
+    overflow:hidden;
+  }
+  .terminal-bar{
+    display:flex; gap:7px;
+    padding:14px 18px;
+    border-bottom:1px solid var(--line);
+  }
+  .dot{width:10px; height:10px; border-radius:50%; background:#3a3d47;}
+  .terminal-body{
+    padding:22px 20px 26px;
+    font-size:0.86rem;
+    min-height:210px;
+  }
+  .terminal-body .prompt{color:var(--amber);}
+  .terminal-body .out{color:var(--muted); display:block; margin:4px 0;}
+  .terminal-body .ok{color:#8FBF9F;}
+  #cursor{display:inline-block; width:7px; background:var(--paper); animation:blink 1s step-end infinite;}
+  @keyframes blink{50%{opacity:0;}}
+
+  /* ---------- STATS ---------- */
+  .stats{
+    padding:56px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .stats .wrap{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:24px;
+  }
+  .stat-num{
+    font-size:2.4rem; font-weight:800; color:var(--amber);
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .stat-label{color:var(--muted); font-size:0.9rem; margin-top:6px;}
+
+  /* ---------- SECTION HEADS ---------- */
+  section{padding:96px 0;}
+  .sec-head{margin-bottom:52px; max-width:60ch;}
+  .sec-head .eyebrow{margin-bottom:14px;}
+  .sec-head h2{
+    font-size:clamp(1.8rem, 3vw, 2.5rem);
+    font-weight:700; letter-spacing:-0.01em;
+  }
+  .sec-head p{color:var(--muted); margin-top:14px; font-size:1.02rem;}
+
+  /* ---------- ABOUT ---------- */
+  .about-body{
+    display:grid; grid-template-columns:1fr 1fr; gap:60px;
+    border-top:1px solid var(--line);
+  }
+  .about-body p{color:#C7C8D0; font-size:1.02rem; max-width:56ch;}
+  .about-body p + p{margin-top:18px;}
+  .about-body .callout{
+    color:var(--amber); font-family:'IBM Plex Mono', monospace; font-weight:500;
+  }
+
+  /* ---------- SKILL CARDS ---------- */
+  .cards{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:2px;
+    border:1px solid var(--line);
+  }
+  .card{
+    background:var(--ink-2);
+    padding:38px 30px;
+    border-right:1px solid var(--line);
+  }
+  .card:last-child{border-right:none;}
+  .card h3{font-size:1.15rem; font-weight:700; margin-bottom:12px;}
+  .card p{color:var(--muted); font-size:0.94rem; line-height:1.6;}
+  .card .tags{
+    display:flex; flex-wrap:wrap; gap:8px; margin-top:18px;
+  }
+  .card .chip-amber{
+    font-family:'IBM Plex Mono', monospace; font-size:0.76rem;
+    border:1px solid var(--amber-dim); color:var(--amber);
+    padding:5px 10px; border-radius:2px;
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .project{
+    border-top:1px solid var(--line);
+    padding:44px 0;
+    display:grid;
+    grid-template-columns:60px 1fr 1fr;
+    gap:32px;
+  }
+  .project:last-child{border-bottom:1px solid var(--line);}
+  .project .pnum{
+    font-family:'IBM Plex Mono', monospace; color:var(--amber-dim); font-size:0.95rem; padding-top:4px;
+  }
+  .project h3{font-size:1.5rem; font-weight:700; margin-bottom:10px;}
+  .project .stack{
+    display:flex; flex-wrap:wrap; gap:8px; margin-top:16px;
+  }
+  .chip{
+    font-family:'IBM Plex Mono', monospace; font-size:0.76rem;
+    border:1px solid var(--line); color:var(--muted);
+    padding:5px 10px; border-radius:2px;
+  }
+  .project p.desc{color:#C7C8D0; font-size:0.98rem; margin-top:4px;}
+  .project ul{margin-top:14px; padding-left:18px; color:#C7C8D0; font-size:0.94rem;}
+  .project ul li{margin-bottom:6px;}
+  .project a.view{
+    display:inline-block; margin-top:18px; color:var(--amber);
+    text-decoration:none; font-size:0.92rem; font-weight:600;
+    border-bottom:1px solid transparent;
+  }
+  .project a.view:hover{border-bottom-color:var(--amber);}
+
+  /* ---------- EXPERIENCE ---------- */
+  .xp{
+    display:grid; grid-template-columns:1fr 1fr; gap:2px;
+    border-top:1px solid var(--line);
+  }
+  .xp-item{padding:36px 0;}
+  .xp-item:first-child{padding-right:30px; border-right:1px solid var(--line);}
+  .xp-item:last-child{padding-left:30px;}
+  .xp-role{font-weight:700; font-size:1.1rem;}
+  .xp-meta{color:var(--amber); font-family:'IBM Plex Mono', monospace; font-size:0.82rem; margin:8px 0 16px;}
+  .xp-item ul{padding-left:18px; color:#C7C8D0; font-size:0.93rem;}
+  .xp-item ul li{margin-bottom:8px;}
+
+  /* ---------- CONTACT ---------- */
+  .contact{
+    border-top:1px solid var(--line);
+    padding:96px 0 110px;
+  }
+  .contact-grid{
+    display:grid; grid-template-columns:1.2fr 0.8fr; gap:60px; align-items:end;
+  }
+  .contact h2{
+    font-size:clamp(1.9rem, 4vw, 3rem); font-weight:800; line-height:1.15;
+    max-width:14ch;
+  }
+  .contact-links{display:flex; flex-direction:column; gap:16px;}
+  .contact-links a{
+    color:var(--paper); text-decoration:none; font-size:1.05rem;
+    padding-bottom:12px; border-bottom:1px solid var(--line);
+    display:flex; justify-content:space-between;
+  }
+  .contact-links a span{color:var(--muted); font-family:'IBM Plex Mono', monospace; font-size:0.85rem;}
+  .contact-links a:hover{color:var(--amber);}
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:28px 0;
+    color:var(--muted); font-size:0.85rem;
+    display:flex; justify-content:space-between;
+  }
+
+  @media (max-width:860px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .stats .wrap{grid-template-columns:repeat(2,1fr);}
+    .cards{grid-template-columns:1fr;}
+    .card{border-right:none; border-bottom:1px solid var(--line);}
+    .project{grid-template-columns:1fr; gap:12px;}
+    .about-body{grid-template-columns:1fr;}
+    .xp{grid-template-columns:1fr;}
+    .xp-item:first-child{border-right:none; border-bottom:1px solid var(--line); padding-right:0;}
+    .xp-item:last-child{padding-left:0;}
+    .contact-grid{grid-template-columns:1fr; gap:36px;}
+    .navlinks{display:none;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    #cursor{animation:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">ABR<span>.</span></div>
+    <ul class="navlinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Work</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="btn btn-outline" style="padding:9px 18px; font-size:0.85rem;">Get in touch</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow mono">Data Analyst — Kolkata, India</div>
+      <h1 class="name">Arkajyoti<br>Basu Ray.</h1>
+      <p class="role-line">
+        I turn <strong>messy, large-scale data</strong> into decisions that matter —
+        SQL rollups, Python automation, and AI-integrated reporting pipelines
+        that ship a finished report, not just a dashboard.
+      </p>
+      <div class="hero-cta">
+        <a href="https://github.com/Arkajyoti10" target="_blank" class="btn btn-solid">View projects</a>
+        <a href="resume.pdf" download class="btn btn-outline">Download résumé</a>
+      </div>
+    </div>
+
+    <div class="hero-panel">
+      <div class="terminal-bar">
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      </div>
+      <div class="terminal-body mono" id="termBody"></div>
+    </div>
+  </div>
+</header>
+
+<section class="stats">
+  <div class="wrap">
+    <div>
+      <div class="stat-num">14.5K+</div>
+      <div class="stat-label">records processed in one pipeline</div>
+    </div>
+    <div>
+      <div class="stat-num">3.2M+</div>
+      <div class="stat-label">rows analyzed (Cyclistic, BigQuery)</div>
+    </div>
+    <div>
+      <div class="stat-num">97%</div>
+      <div class="stat-label">recall on a credit-risk model</div>
+    </div>
+    <div>
+      <div class="stat-num">&lt;1min</div>
+      <div class="stat-label">analysis-to-report turnaround</div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow mono">About</div>
+      <h2>I build the pipeline, not just the chart.</h2>
+    </div>
+    <div class="about-body">
+      <p>
+        I'm a B.Tech graduate in Electronics &amp; Communication Engineering,
+        now working as a data analyst across SQL, Python, and BI tooling.
+        My internship at <span class="callout">ISRO</span> had me calibrating
+        radar tracking data across 100–1,000+ km ranges; at
+        <span class="callout">Internship Studio</span> I shipped an ETL
+        pipeline from scratch.
+      </p>
+      <p>
+        What I actually enjoy is the last mile — the part between "the
+        analysis is done" and "someone can act on it." That's why my
+        most recent project doesn't stop at a query result: it flags,
+        classifies, and writes the report on its own.
+      </p>
+      <p style="margin-top:22px;">
+        Google Data Analyst Professional Certificate — Coursera, 2026
+      </p>
+      <p style="margin-top:6px;">
+        Data Analytics Job Simulation — Deloitte, 2025
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow mono">What I do</div>
+      <h2>Three ways I move data forward.</h2>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <h3>SQL &amp; Data Modeling</h3>
+        <p>Multi-table rollups, CTEs, and query design that hold up against
+        real grain mismatches — not just SELECT * and a filter.</p>
+        <div class="tags">
+          <span class="chip-amber">PostgreSQL</span>
+          <span class="chip-amber">MySQL</span>
+          <span class="chip-amber">BigQuery</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Python Automation</h3>
+        <p>Pipelines that extract, segment, and flag on their own —
+        thresholds computed from the data, not hardcoded guesses.</p>
+        <div class="tags">
+          <span class="chip-amber">Pandas</span>
+          <span class="chip-amber">NumPy</span>
+          <span class="chip-amber">SQLAlchemy</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>BI &amp; AI Reporting</h3>
+        <p>Dashboards stakeholders read, and reports an LLM helps write —
+        with every figure sourced from the data, never generated.</p>
+        <div class="tags">
+          <span class="chip-amber">Power BI</span>
+          <span class="chip-amber">DAX</span>
+          <span class="chip-amber">LLM API</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow mono">Selected work</div>
+      <h2>Projects</h2>
+      <p>Four projects, spanning automated pipelines, BI dashboards,
+      predictive modeling, and business reporting.</p>
+    </div>
+
+    <div class="project">
+      <div class="pnum">01</div>
+      <div>
+        <h3>Client Profitability Analytics</h3>
+        <p class="desc">
+          An automated AI reporting pipeline. SQL rolls up 14,500+ records
+          across 5 tables into client-level margin and fee realization;
+          Python flags the bottom 25% using data-driven thresholds; an
+          LLM writes the narrative while every number stays sourced
+          directly from the dataset — compiled into a Word report.
+        </p>
+        <div class="stack">
+          <span class="chip">PostgreSQL</span>
+          <span class="chip">Python</span>
+          <span class="chip">SQLAlchemy</span>
+          <span class="chip">Groq LLM API</span>
+          <span class="chip">python-docx</span>
+        </div>
+        <a class="view" href="https://github.com/Arkajyoti10/Client-profitability-analytics" target="_blank">View on GitHub →</a>
+      </div>
+      <div>
+        <ul>
+          <li>5 tables, 14,500+ records reconciled into client-level margin</li>
+          <li>Bottom-quartile flagging on margin <em>and</em> realization rate</li>
+          <li>Root-cause split: discount-driven vs. cost-driven clients</li>
+          <li>Hours-to-report turnaround cut to under a minute</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="pnum">02</div>
+      <div>
+        <h3>Cyclistic Rider Conversion Analysis</h3>
+        <p class="desc">
+          Cleaned and analyzed 3.2M+ rows of bike-share trip data in
+          BigQuery, then built an interactive Power BI dashboard to
+          surface seasonal and behavioral patterns behind membership
+          conversion.
+        </p>
+        <div class="stack">
+          <span class="chip">SQL</span>
+          <span class="chip">BigQuery</span>
+          <span class="chip">Power BI</span>
+          <span class="chip">DAX</span>
+          <span class="chip">Alteryx</span>
+        </div>
+        <a class="view" href="https://github.com/Arkajyoti10/Cyclistic-Rider-Conversion-Analysis" target="_blank">View on GitHub →</a>
+      </div>
+      <div>
+        <ul>
+          <li>13% summer ridership surge identified via seasonal trend analysis</li>
+          <li>Casual riders average 2× longer trip durations than members</li>
+          <li>Findings translated into a targeted conversion strategy</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="pnum">03</div>
+      <div>
+        <h3>Loan Risk Prediction Analysis</h3>
+        <p class="desc">
+          Explored 614 loan applications — average applicant income of
+          $5,403 with high-income outliers up to $81,000, ~78% of
+          applicants Graduates, and Semiurban properties the most common
+          category (233 cases) — then compared two classification models
+          to predict approval, weighing accuracy against the recall
+          needed to catch risky approvals.
+        </p>
+        <div class="stack">
+          <span class="chip">Python</span>
+          <span class="chip">Scikit-Learn</span>
+          <span class="chip">Pandas</span>
+          <span class="chip">Logistic Regression</span>
+          <span class="chip">Random Forest</span>
+        </div>
+        <a class="view" href="https://github.com/Arkajyoti10/Loan-risk-prediction-analysis" target="_blank">View on GitHub →</a>
+      </div>
+      <div>
+        <ul>
+          <li>Credit History emerged as the strongest predictor — applicants meeting guidelines saw a significantly higher approval probability</li>
+          <li>Baseline approval rate of 68% (422 of 614 applications) provided a balanced foundation for the model</li>
+          <li>Logistic Regression: 85.06% accuracy with 97% recall on approved loans — the model taken forward</li>
+          <li>Random Forest: 81.82% accuracy, but a stronger 56% recall on denied cases, better at catching subtle risk patterns</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="pnum">04</div>
+      <div>
+        <h3>Deloitte Growth Analysis Report, FY19–21</h3>
+        <p class="desc">
+          Analyzed Deloitte UK's three-year financial and impact performance
+          as part of Deloitte's Data Analytics job simulation — consolidating
+          revenue, workforce, environmental, and community data into a
+          structured growth report for stakeholder review.
+        </p>
+        <div class="stack">
+          <span class="chip">Excel</span>
+          <span class="chip">Data Analysis</span>
+          <span class="chip">Reporting</span>
+        </div>
+        <a class="view" href="https://github.com/Arkajyoti10/Deloitte-Growth-analysis-Report-FY19-21" target="_blank">View on GitHub →</a>
+      </div>
+      <div>
+        <ul>
+          <li>£4,491M total revenue, with £590M distributable profit and £1,323M total tax contribution</li>
+          <li>Consulting and Financial Services / Consumer sectors identified as the leading drivers of top-line growth</li>
+          <li>£30M invested in Learning &amp; Development across 444K training hours</li>
+          <li>228 ethics cases resolved with a 95% trust score, and £6.90M in total community contribution</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow mono">Experience</div>
+      <h2>Where I've worked.</h2>
+    </div>
+    <div class="xp">
+      <div class="xp-item">
+        <div class="xp-role">Range Operations Intern — ISRO</div>
+        <div class="xp-meta">Sep 2025 – Oct 2025</div>
+        <ul>
+          <li>Improved radar tracking data accuracy by ~15% across 100–1,000+ km ranges through calibration techniques</li>
+          <li>Processed 1,000+ data sessions, lifting signal-to-noise ratio by ~10% for mission-critical decisions</li>
+        </ul>
+      </div>
+      <div class="xp-item">
+        <div class="xp-role">Data Science Intern — Internship Studio</div>
+        <div class="xp-meta">Jun 2025 – Aug 2025</div>
+        <ul>
+          <li>Built an end-to-end ETL pipeline processing 10,000+ records from scratch</li>
+          <li>Trained a Logistic Regression model at 85% accuracy, cutting prediction errors by 20%</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact">
+    <div class="wrap contact-grid">
+      <h2>Let's talk about your next analyst hire.</h2>
+      <div class="contact-links">
+        <a href="mailto:arkajyotibasuray100@gmail.com">Email <span>arkajyotibasuray100@gmail.com</span></a>
+        <a href="https://linkedin.com/in/arkajyoti-basu-ray-4219a5282" target="_blank">LinkedIn <span>in/arkajyoti-basu-ray</span></a>
+        <a href="https://github.com/Arkajyoti10" target="_blank">GitHub <span>Arkajyoti10</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; width:100%;">
+    <span>© 2026 Arkajyoti Basu Ray</span>
+    <span>Kolkata, West Bengal</span>
+  </div>
+</footer>
+
+<script>
+  const lines = [
+    { text: "$ python report.py", cls: "prompt" },
+    { text: "Extracting client profitability data\u2026", cls: "out" },
+    { text: "Segmenting 40 clients by margin \u00d7 revenue\u2026", cls: "out" },
+    { text: "Flagging bottom quartile (margin + realization)\u2026", cls: "out" },
+    { text: "Classifying root cause: discount vs. cost-driven\u2026", cls: "out" },
+    { text: "Generating report narrative via LLM\u2026", cls: "out" },
+    { text: "\u2713 Report saved to deliverables/profitability_report.docx", cls: "ok" }
+  ];
+
+  const el = document.getElementById('termBody');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function renderStatic(){
+    el.innerHTML = lines.map(l => `<span class="${l.cls}">${l.text}</span>`).join('');
+  }
+
+  function typeLines(){
+    let li = 0, ci = 0;
+    const cursor = '<span id="cursor">&nbsp;</span>';
+
+    function step(){
+      if(li >= lines.length){ 
+        el.innerHTML = lines.map(l => `<span class="${l.cls}">${l.text}</span>`).join('') + cursor;
+        return;
+      }
+      const current = lines[li];
+      const shown = current.text.slice(0, ci);
+      const done = lines.slice(0, li).map(l => `<span class="${l.cls}">${l.text}</span>`).join('');
+      el.innerHTML = done + `<span class="${current.cls}">${shown}</span>` + cursor;
+
+      if(ci < current.text.length){
+        ci++;
+        setTimeout(step, current.cls === 'prompt' ? 55 : 18);
+      } else {
+        li++; ci = 0;
+        setTimeout(step, 260);
+      }
+    }
+    step();
+  }
+
+  if(reduced){ renderStatic(); } else { typeLines(); }
+</script>
+
+</body>
+</html>
